@@ -135,6 +135,14 @@ SatEngine::SatEngine(const Parameters& params, const SatProcessConfig& config, L
 	setup.numOriginalClauses = numClauses;
 	setup.proofDir = proofDirectory;
 
+	std::map<std::string, std::string> solver_flags;
+	for (auto& [key, value] : appConfig.map) {
+		if (key[1] == ':') {
+			solver_flags[key] = value;
+		}
+	}
+	setup.solver_flags = solver_flags;
+
 	// Instantiate solvers according to the global solver IDs and diversification indices
 	int cyclePos = begunCyclePos;
 	for (setup.localId = 0; setup.localId < _num_solvers; setup.localId++) {

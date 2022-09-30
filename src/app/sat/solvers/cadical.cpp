@@ -9,6 +9,7 @@
 #include <stdarg.h>
 #include <chrono>
 #include <filesystem>
+#include <string>
 
 #include "cadical.hpp"
 #include "util/logger.hpp"
@@ -22,6 +23,13 @@ Cadical::Cadical(const SolverSetup& setup)
 		  fetchLearnedClause(c, AdaptiveClauseDatabase::ANY);
 		  return c;
 	  }) {
+	
+	for (auto& [key, value] : setup.solver_flags) {
+		if (key[0] == 'c') {
+			std::string key = key.substr(2);
+			solver->set(key.c_str(), std::stoi(value));
+		}
+	}
 	
 	solver->connect_terminator(&terminator);
 	solver->connect_learn_source(&learnSource);

@@ -2,6 +2,7 @@
 #pragma once
 
 #include <string>
+#include <map>
 
 #include "util/logger.hpp"
 #include "util/random.hpp"
@@ -42,4 +43,9 @@ struct SolverSetup {
 	bool certifiedUnsat;
 	int maxNumSolvers;
 	std::string proofDir;
+
+	// Flags to be passed to the SAT solver.
+	// The key is in the format: "<SATSolverCharacater>:<Key>"
+	// e.g. c:seed would be define a seed for the cadical solver.
+	std::map<std::string, std::string> solver_flags;
 };
