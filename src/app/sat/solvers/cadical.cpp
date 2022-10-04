@@ -10,6 +10,7 @@
 #include <chrono>
 #include <filesystem>
 #include <string>
+#include <iostream>
 
 #include "cadical.hpp"
 #include "util/logger.hpp"
@@ -26,8 +27,8 @@ Cadical::Cadical(const SolverSetup& setup)
 	
 	for (auto& [key, value] : setup.solver_flags) {
 		if (key[0] == 'c') {
-			std::string key = key.substr(2);
-			solver->set(key.c_str(), std::stoi(value));
+			std::string cadical_key = key.substr(2);
+			solver->set(cadical_key.c_str(), std::stoi(value));
 		}
 	}
 	
