@@ -9,8 +9,8 @@ set(BASE_SOURCES ${BASE_SOURCES} ${SAT_SOURCES} CACHE INTERNAL "")
 
 # Include default SAT solvers as external libraries (their Mallob-side interfaces are part of SAT_SOURCES)
 link_directories(lib/lingeling lib/yalsat lib/cadical lib/kissat)
-set(BASE_LIBS ${BASE_LIBS} lgl yals cadical kissat CACHE INTERNAL "")
-set(BASE_INCLUDES ${BASE_INCLUDES} lib/lingeling CACHE INTERNAL "") # need to include some lingeling code
+set(BASE_LIBS ${BASE_LIBS} lgl yals ${CMAKE_CURRENT_SOURCE_DIR}/lib/cadical/libcadical.a  kissat CACHE INTERNAL "")
+set(BASE_INCLUDES ${BASE_INCLUDES} lib/lingeling CACHE INTERNAL "")
 
 # Add new non-default solvers here
 if(MALLOB_USE_GLUCOSE)
