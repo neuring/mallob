@@ -244,4 +244,6 @@ void Cadical::writeStatistics(SolverStatistics& stats) {
 	stats.decisions = s.decisions;
 	stats.propagations = s.propagations;
 	stats.restarts = s.restarts;
+	stats.conflicts_on_imported_clauses = s.conflicts_on_imported_clauses;
+	stats.propagations_on_imported_clauses = s.propagations_on_imported_clauses;
 }
