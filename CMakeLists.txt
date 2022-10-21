@@ -5,6 +5,8 @@ find_package(MPI REQUIRED)
 
 set(CMAKE_CXX_STANDARD 17)
 
+message("Base libs 0: ${BASE_LIBS}")
+
 
 # Build-specific compile options
 
@@ -44,11 +46,15 @@ if(MALLOB_USE_JEMALLOC)
     set(BASE_LIBS jemalloc ${BASE_LIBS})
 endif()
 
+message("Base libs 1: ${BASE_LIBS}")
+
 
 # Libraries and includes
 
 set(BASE_LIBS ${BASE_LIBS} ${MPI_CXX_LIBRARIES} ${MPI_CXX_LINK_FLAGS} m z rt dl CACHE INTERNAL "")
 set(BASE_INCLUDES ${MPI_CXX_INCLUDE_PATH} src lib CACHE INTERNAL "")
+
+message("Base libs 2: ${BASE_LIBS}")
 
 
 # Base source files
@@ -141,7 +147,7 @@ target_link_libraries(mallob_process_dispatcher ${BASE_LIBS} mallob_commons)
 add_definitions("${MY_DEBUG_OPTIONS}")
 SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${MY_DEBUG_OPTIONS}")
 
-
+message("Base libs 3 ${BASE_LIBS}")
 # Tests
 
 enable_testing()

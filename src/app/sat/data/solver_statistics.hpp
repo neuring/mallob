@@ -14,6 +14,8 @@ struct SolverStatistics {
 	double memPeak = 0;
 	unsigned long imported = 0;
 	unsigned long discarded = 0;
+    unsigned long conflicts_on_imported_clauses = 0; 
+    unsigned long propagations_on_imported_clauses = 0; 
 	
 	// clause export
 	ClauseHistogram* histProduced;
@@ -31,8 +33,10 @@ struct SolverStatistics {
 
 	std::string getReport() const {
 		return "pps:" + std::to_string(propagations)
+			+ " ppsi:" + std::to_string(propagations_on_imported_clauses)
 			+ " dcs:" + std::to_string(decisions)
 			+ " cfs:" + std::to_string(conflicts)
+			+ " cfsi:" + std::to_string(conflicts_on_imported_clauses)
 			+ " rst:" + std::to_string(restarts)
 			+ " prod:" + std::to_string(producedClauses)
 			+ " (flt:" + std::to_string(producedClausesFiltered)
@@ -51,6 +55,7 @@ struct SolverStatistics {
 		conflicts += other.conflicts;
 		restarts += other.restarts;
 		memPeak += other.memPeak;
+		conflicts_on_imported_clauses += other.conflicts_on_imported_clauses;
 		producedClauses += other.producedClauses;
 		producedClausesAdmitted += other.producedClausesAdmitted;
 		producedClausesFiltered += other.producedClausesFiltered;
