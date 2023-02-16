@@ -17,7 +17,6 @@ struct SolverStatistics {
     unsigned long conflicts_on_imported_clauses = 0; 
     unsigned long propagations_on_imported_clauses = 0; 
 	unsigned long imported_clauses = 0;
-	unsigned long imported_clauses_bc_selection_heuristic = 0;
 	
 	// clause export
 	ClauseHistogram* histProduced;
@@ -41,7 +40,6 @@ struct SolverStatistics {
 			+ " cfsi:" + std::to_string(conflicts_on_imported_clauses)
 			+ " rst:" + std::to_string(restarts)
 			+ " imp:" + std::to_string(imported_clauses)
-			+ " impsh:" + std::to_string(imported_clauses_bc_selection_heuristic)
 			+ " prod:" + std::to_string(producedClauses)
 			+ " (flt:" + std::to_string(producedClausesFiltered)
 			+ " adm:" + std::to_string(producedClausesAdmitted)
@@ -69,6 +67,5 @@ struct SolverStatistics {
 		receivedClausesDigested += other.receivedClausesDigested;
 		receivedClausesDropped += other.receivedClausesDropped;
 		imported_clauses += other.imported_clauses;
-		imported_clauses_bc_selection_heuristic += other.imported_clauses_bc_selection_heuristic;
 	}
 };

@@ -247,5 +247,4 @@ void Cadical::writeStatistics(SolverStatistics& stats) {
 	stats.conflicts_on_imported_clauses = s.conflicts_on_imported_clauses;
 	stats.propagations_on_imported_clauses = s.propagations_on_imported_clauses;
 	stats.imported_clauses = s.imported_clauses;
-	stats.imported_clauses_bc_selection_heuristic = s.imported_clauses_bc_selection_heuristic;
 }
